@@ -77,13 +77,13 @@ class FilamentCustomFieldsServiceProvider extends PackageServiceProvider
         FilamentIcon::register($this->getIcons());
 
         // Handle Stubs
-        if (app()->runningInConsole()) {
-            foreach (app(Filesystem::class)->files(__DIR__ . '/../stubs/') as $file) {
-                $this->publishes([
-                    $file->getRealPath() => base_path("stubs/filament-custom-fields/{$file->getFilename()}"),
-                ], 'filament-custom-fields-stubs');
-            }
-        }
+        // if (app()->runningInConsole()) {
+        //     foreach (app(Filesystem::class)->files(__DIR__ . '/../stubs/') as $file) {
+        //         $this->publishes([
+        //             $file->getRealPath() => base_path("stubs/filament-custom-fields/{$file->getFilename()}"),
+        //         ], 'filament-custom-fields-stubs');
+        //     }
+        // }
 
         // Testing
         Testable::mixin(new TestsFilamentCustomFields);
@@ -112,7 +112,7 @@ class FilamentCustomFieldsServiceProvider extends PackageServiceProvider
     protected function getCommands(): array
     {
         return [
-            FilamentCustomFieldsCommand::class,
+            // FilamentCustomFieldsCommand::class,
         ];
     }
 
@@ -146,7 +146,7 @@ class FilamentCustomFieldsServiceProvider extends PackageServiceProvider
     protected function getMigrations(): array
     {
         return [
-            'create_filament-custom-fields_table',
+            'create_filament_custom_fields_table',
         ];
     }
 }
