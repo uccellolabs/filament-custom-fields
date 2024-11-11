@@ -10,7 +10,7 @@ class CustomField extends Model
         'resource',
         'name',
         'type',
-        'data'
+        'data',
     ];
 
     protected $casts = [
