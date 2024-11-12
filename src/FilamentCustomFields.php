@@ -2,7 +2,6 @@
 
 namespace Uccello\FilamentCustomFields;
 
-use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 

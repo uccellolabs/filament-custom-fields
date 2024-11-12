@@ -11,7 +11,7 @@ class CustomField extends Model
         'name',
         'type',
         'sequence',
-        'data'
+        'data',
     ];
 
     protected $casts = [
