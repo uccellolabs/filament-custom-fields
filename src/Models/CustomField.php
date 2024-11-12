@@ -10,6 +10,7 @@ class CustomField extends Model
         'resource',
         'name',
         'type',
+        'sequence',
         'data'
     ];
 
