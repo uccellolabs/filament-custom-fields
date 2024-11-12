@@ -30,27 +30,13 @@
         {{ $getHeading() }}
     </x-slot>
 
-    <div x-data="{init() {
-                new Sortable(document.getElementById('sortable-fields'), {
-                    animation: 150,
-                    onEnd: function(evt) {
-                        let order = Array.from(document.querySelectorAll('.draggable-field')).map((el, index) => {
-                            return { id: el.getAttribute('data-id'), order: index };
-                        });
-
-                        // Appelle la fonction Livewire pour mettre à jour l'ordre
-                        $wire.dispatch('update-order', order);
-
-                        console.log(order)
-                    },
-                });
-            }}" class="custom-section">
-        <div id="sortable-fields" class="grid grid-cols-2" style="grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem;">
-            @foreach ($getChildComponentContainer()->getComponents() as $i => $field)
-                <div class="draggable-field" data-id="{{ $field->getId() }}">
-                    {{ $field->render() }}
+    <div
+        wire:end.stop="{{ 'updateOrder( $event.target.sortable.toArray())' }}"
+        x-sortable :data-sortable-animation-duration="150" class="grid grid-cols-2" style="grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem;">
+            @foreach ($getChildComponentContainer()->getComponents() as $field)
+                <div class="draggable-field" x-sortable-item="{{ $field->getId() }}">
+                    <div x-sortable-handle>{{ $field->render() }}</div>
                 </div>
             @endforeach
-        </div>
     </div>
 </x-filament::section>

@@ -3,22 +3,16 @@
 namespace Uccello\FilamentCustomFields\Components;
 
 use Filament\Forms\Components\Section as ComponentsSection;
-use Livewire\Attributes\On;
 
 class Section extends ComponentsSection
 {
     protected string $view = 'filament-custom-fields::components.filament.custom-section';
 
-    #[On('update-order')]
-    public function updateOrder($order)
+    public static function updateOrder($order)
     {
-        dd('ici');
-        foreach ($order as $field) {
+        foreach ($order as $sequence => $id) {
             $model = config('filament-custom-fields.model');
-            $model::where('id', $field['id'])->update(['sequence' => $field['order']]);
+            $model::where('id', $id)->update(['sequence' => $sequence]);
         }
-
-        // Rafraîchir l'affichage pour montrer l'ordre mis à jour
-        $this->mount();
     }
 }
